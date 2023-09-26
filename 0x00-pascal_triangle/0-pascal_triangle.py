@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#! / usr / bin / python3
 
 """
     Generate the pascal triangle of an nth term
