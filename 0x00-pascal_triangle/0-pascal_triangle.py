@@ -6,6 +6,7 @@
     n = 1, produces [[1]].
 """
 
+
 def pascal_triangle(n):
     """
     list of list of numbers is generated to 
