@@ -9,10 +9,10 @@
 
 def pascal_triangle(n):
     """
-    list of lists of numbers is generated to 
+    list of lists of numbers is generated to
     produce pascal triangle
     """
-    if n == 0:
+    if n <= 0:
         return []
     if n == 1:
         return [[1]]
