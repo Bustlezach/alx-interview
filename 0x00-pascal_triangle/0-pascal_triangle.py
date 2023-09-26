@@ -1,7 +1,7 @@
-#! / usr / bin / python3
+#!/usr/bin/python3
 
 """
-    Generate the pascal triangle of an nth term
+    Generate the pascal triangle of a nth term
     n = 0, produces empty list,
     n = 1, produces [[1]].
 """
@@ -9,7 +9,7 @@
 
 def pascal_triangle(n):
     """
-    list of list of numbers is generated to 
+    list of lists of numbers is generated to 
     produce pascal triangle
     """
     if n == 0:
