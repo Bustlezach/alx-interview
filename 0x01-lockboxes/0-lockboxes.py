@@ -1,14 +1,44 @@
 #!/usr/bin/python3
+"""Lockboxes """
 
-def can_unlock_all(boxes):
-    unlocked_boxes = [0]
-    total_boxes = len(boxes)
+def canUnlockAll(container):
+  """
+  Determine if all the boxes in the container
+  can be opened.
+  """
 
-    for box_index, box in enumerate(boxes):
-        if not box:
-            continue
-        for key in box:
-            if key < total_boxes and key not in unlocked_boxes and key != box_index:
-                unlocked_boxes.append(key)
+  if type(container) is not list or container is None:
+    return False
+  
+  container_size = len(container)
 
-    return len(unlocked_boxes) == total_boxes
+  box_status = ['opened']
+  for box in range(1, container_size):
+    box_status.append('closed')
+
+
+  for box_no in range(0, container_size):
+    if box_no == 0 or box_status[box_no] == 'opened':
+      for key in container[box_no]:
+        if key < container_size and box_status[key] == 'closed':
+          # use the key to loop through the key box number in the container
+          for k in container[key]:
+            if k < container_size:
+              box_status[k] = 'opened'
+        if key < container_size:
+          box_status[key] = 'opened'
+
+  return 'closed' not in box_status
+      
+
+
+
+"""Test cases"""
+boxes = [[1], [2], [3], [4], []]
+print(canUnlockAll(boxes))
+
+boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
+print(canUnlockAll(boxes))
+
+boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+print(canUnlockAll(boxes))
