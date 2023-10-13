@@ -1,17 +1,13 @@
 #!/usr/bin/python3
+"""
+File:
+0x02-minimum_operations/0-minoperations.py
+"""
 
 
 def minOperations(n):
     """
-    This function calculates the fewest number of 
-    operations needed to result in exactly n H characters in the file
-
-    Returns an integer
-
-    given - the given string 
-    copy character - cp_ch
-    number of loops - operation 
-    length of given string - given_len
+    Calculates the fewest number of operations needed
     """
     given = "H"
     cp_ch = ""
