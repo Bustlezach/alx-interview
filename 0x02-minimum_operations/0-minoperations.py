@@ -4,6 +4,7 @@ File:
 0x02-minimum_operations/0-minoperations.py
 """
 
+
 def minOperations(n):
     """
     This function calculates the fewest number of 
