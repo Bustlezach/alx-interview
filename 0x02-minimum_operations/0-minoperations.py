@@ -1,8 +1,4 @@
 #!/usr/bin/python3
-"""
-File:
-0x02-minimum_operations/0-minoperations.py
-"""
 
 
 def minOperations(n):
