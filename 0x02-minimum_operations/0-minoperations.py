@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+File:
+0x02-minimum_operations/0-minoperations.py
+"""
 
 def minOperations(n):
     """
@@ -12,11 +16,11 @@ def minOperations(n):
     number of loops - operation 
     length of given string - given_len
     """
-    given = 'H'
-    cp_ch = ''
-    operation = 0
-    given_len = 1
+    given = "H"
+    cp_ch = ""
 
+    given_len = 1
+    operation = 0
 
     while given_len < n:
         if n % given_len == 0:
@@ -25,5 +29,4 @@ def minOperations(n):
         given += cp_ch
         given_len = len(given)
         operation += 1
-
     return operation
