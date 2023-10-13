@@ -12,10 +12,6 @@ def minOperations(n):
     number of loops - operation 
     length of given string - given_len
     """
-    if n <= 1:
-        return 0
-
-
     given = 'H'
     cp_ch = ''
     operation = 0
@@ -31,8 +27,3 @@ def minOperations(n):
         operation += 1
 
     return operation
-
-# Example usage:
-n = 9
-result = minOperations(n)
-print("Number of operations:", result)
