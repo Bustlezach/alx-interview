@@ -6,7 +6,8 @@ def print_metrics(dic, total_size):
     """
     print(f'File size: {total_size}')
     for key in dic.keys():
-        print(f'{key}: {dic[key]}')
+        if dic[key] != 0:
+            print(f'{key}: {dic[key]}')
 
 
 dic = {
