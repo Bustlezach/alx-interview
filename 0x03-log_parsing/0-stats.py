@@ -1,48 +1,43 @@
 #!/usr/bin/python3
+"""
+This script prints the metric stats at interval
+"""
 
-def print_metrics(dic, total_size):
+
+def print_metric(dic, total_size):
     """
-    This function prints the metric stats
+    Print function
     """
-    print(f'File size: {total_size}')
-    for key in dic.keys():
-        if dic[key] != 0:
-            print(f'{key}: {dic[key]}')
+    d = sorted(dic.keys())
+    print("File size: {:d}".format(total_size))
+    for i in d:
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
 
-
-dic = {
-    '200': 0,
-    '301': 0,
-    '400': 0,
-    '401': 0,
-    '403': 0,
-    '404': 0,
-    '405': 0,
-    '500': 0
-}
-
+c = 0
 total_size = 0
-count = 0
+dic = {"200": 0, "301": 0, "400": 0, "401": 0,
+       "403": 0, "404": 0, "405": 0, "500": 0}
 
 try:
     with open(0) as file:
         for line in file:
+            c += 1
             arr = line.split()
-            count += 1
             try:
                 total_size += int(arr[-1])
             except:
                 pass
             try:
-                if arr[-2] in dic:
-                    dic[arr[-2]] += 1
+                status = arr[-2]
+                if status in dic:
+                    dic[status] += 1
             except:
                 pass
-            try:
-                if count % 10 == 0:
-                    print_metrics(dic, total_size)
-            except:
-                print_metrics(dic, total_size)
+            if c % 10 == 0:
+                print_metric(dic, total_size)
+        print_metric(dic, total_size)
+
 except KeyboardInterrupt:
-    print_metrics(dic, total_size)
+    print_metric(dic, total_size)
     raise
