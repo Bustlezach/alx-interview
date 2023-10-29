@@ -13,6 +13,9 @@ def validUTF8(data):
     binary_sets = []
     state = False
 
+    if not (type(data) == list):
+        return state
+
     for val in data:
         bin_num = bin(val)
         binary_sets.append(bin_num[2:])
