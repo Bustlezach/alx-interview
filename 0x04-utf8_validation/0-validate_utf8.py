@@ -13,26 +13,26 @@ def validUTF8(data):
         True if the data is valid UTF-8, False otherwise.
     """
 
-    binary_sets = []
-    state = False
+    num_bytes = 0
 
-    if not (type(data) == list):
-        return state
+    for num in data:
+        bin_num = format(num, '#010b')[-8:]
 
-    for val in data:
-        bin_num = bin(val)
-        binary_sets.append(bin_num[2:])
+        if num_bytes == 0:
+            for digit in bin_num:
+                if digit == '0':
+                    break
+                num_bytes += 1
 
-    for val in binary_sets:
-        if not (val.startswith('0') or val.startswith('1')):
-            if state:
-                state = False
-                break
+            if num_bytes == 0:
+                continue
+
+            if num_bytes == 1 or num_bytes > 4:
+                return False
         else:
-            if '0' in val and '1' in val:
-                state = True
-            else:
-                state = False
-                break
+            if not (bin_num[0] == '1' and bin_num[1] == '0'):
+                return False
 
-    return state
+        num_bytes -= 1
+
+    return num_bytes == 0
