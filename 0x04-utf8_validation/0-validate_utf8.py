@@ -3,6 +3,7 @@
 Determines if given data represents valid utf8.
 """
 
+
 def validUTF8(data):
     """Determines whether the binary of a number is a valid UTF-8 decoding.
 
