@@ -14,26 +14,26 @@ def validUTF8(data):
         True if the data is valid UTF-8, False otherwise.
     """
 
-    state = 0
+    number_bytes = 0
 
     for num in data:
         bin_num = format(num, '#010b')[-8:]
 
-        if state == 0:
+        if number_bytes == 0:
             for digit in bin_num:
                 if digit == '0':
                     break
-                state += 1
+                number_bytes += 1
 
-            if state == 0:
+            if number_bytes == 0:
                 continue
 
-            if state == 1 or state > 4:
+            if number_bytes == 1 or number_bytes > 4:
                 return False
         else:
-            if not (bin_num[1] and bin_num[0]):
+            if not (bin_num[0] == '1' and bin_num[1] == '0'):
                 return False
 
-        state -= 1
+        number_bytes -= 1
 
-    return state == 0
+    return number_bytes == 0
