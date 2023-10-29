@@ -31,7 +31,7 @@ def validUTF8(data):
             if state == 1 or state > 4:
                 return False
         else:
-            if not (bin_num.startswith('1') and bin_num.startswith('0')):
+            if not (bin_num[1] and bin_num[0]):
                 return False
 
         state -= 1
