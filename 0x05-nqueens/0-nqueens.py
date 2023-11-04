@@ -28,6 +28,7 @@ neg_diag = set()
 
 solutions = []
 
+
 def is_safe(r, c):
     for prev_row in range(r):
         if board[prev_row] == c or \
@@ -35,6 +36,7 @@ def is_safe(r, c):
            board[prev_row] + prev_row == c + r:
             return False
     return True
+
 
 def solve_puzzle(row):
     if row == n:
@@ -46,6 +48,7 @@ def solve_puzzle(row):
             board[row] = col
             solve_puzzle(row + 1)
             board[row] = -1
+
 
 solve_puzzle(0)
 
