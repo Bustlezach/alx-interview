@@ -15,40 +15,30 @@ const url = `https://swapi-api.alx-tools.com/api/films/${id}/`;
 const request = require('request');
 const characters = [];
 
-request.get(url, function(error, response, body){
-  if(error) {
+
+request.get(url, function(error, response, body) {
+  if (error) {
     return error;
-  }
-  if(response.statusCode === 200) {
-    // console.log("SUCCESS");
-  }
-  const data = JSON.parse(body);
-  if(data.hasOwnProperty("characters")) {
-    const result = data.characters;
-    result.forEach((line) => {
-      characters.push(line);
-    })
-    characters.map((URL) => {
-      request.get(URL, function(err, res, body) {
-        const person = JSON.parse(body);
-        console.log(person.name);
-      })
-    })
+  } else if (response.statusCode === 200) {
+    const data = JSON.parse(body);
+
+    if (data.hasOwnProperty("characters")) {
+      const result = data.characters;
+
+      result.forEach((line) => {
+        characters.push(line);
+      });
+
+      characters.map((URL) => {
+        request.get(URL, function(err, res, body) {
+          const person = JSON.parse(body);
+          console.log(person.name);
+        });
+      });
+    } else {
+      console.log("characters not found");
+    }
   } else {
-    return "characters not found";
+    console.log('Error occurred, Status code: ' + response.statusCode);
   }
 });
-
-
-
-
-  // .then((response) => {
-  //   if (response.status === 200) {
-  //     return response.json();
-  //   } else {
-  //     throw new Error("Something went wrong on API server.");
-  //   }
-  // })
-  // .then((data) => console.log(data))
-  // .catch((error) => console.error(error))
-  // .finally();
