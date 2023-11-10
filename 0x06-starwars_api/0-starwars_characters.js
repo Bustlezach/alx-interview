@@ -1,16 +1,16 @@
 #!/usr/bin/node
 
-function order (characters, idx) {
-  if (idx >= characters.length) {
+function ordered (characters, i) {
+  if (i >= characters.length) {
     return;
   }
-  request(characters[idx], function (err, response, body) {
+  request(characters[i], function (err, response, body) {
     if (err) {
       console.log(err);
     } else if (response.statusCode === 200) {
       const person = JSON.parse(body);
       console.log(person.name);
-      return order(characters, ++idx);
+      return ordered(characters, ++i);
     } else {
       console.log('error ocurred, Status code: ' + response.statusCode);
     }
@@ -19,13 +19,13 @@ function order (characters, idx) {
 
 const request = require('request');
 const url = 'https://swapi-api.hbtn.io/api/films/';
-const ep = process.argv[2];
-request(url + ep, function (err, response, body) {
+const num = process.argv[2];
+request(url + num, function (err, response, body) {
   if (err) {
     console.log(err);
   } else if (response.statusCode === 200) {
-    const jsobj = JSON.parse(body);
-    order(jsobj.characters, 0);
+    const jsonified = JSON.parse(body);
+    ordered(jsonified.characters, 0);
   } else {
     console.log('error ocurred, Status code: ' + response.statusCode);
   }
