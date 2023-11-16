@@ -13,10 +13,13 @@ def rotate_2d_matrix(matrix):
     if not n >= 2:
         sys.exit(1)
 
-    for i in range(n):
-        for j in range(i, n):
-            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-
-    for i in range(n//2):
-        for j in range(n):
-            matrix[j][i], matrix[j][n - 1 - i] = matrix[j][n - 1 - i], matrix[j][i]
+    for i in range(int(n / 2)):
+        y = (n - i - 1)
+        for j in range(i, y):
+            x = (n - 1 - j)
+            temp = matrix[i][j]
+            matrix[i][j] = matrix[x][i]
+            matrix[x][i] = matrix[y][x]
+            matrix[y][x] = matrix[j][y]
+            matrix[j][y] = temp
+            
