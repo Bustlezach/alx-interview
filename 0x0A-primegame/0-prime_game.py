@@ -39,6 +39,9 @@ def removal(mul_list, num_list):
 
 
 def isWinner(x, nums, play_times=0):
+    if not nums or x < 1:
+        return None
+
     num = nums[0]
 
     num_list = numbers_list(num)
