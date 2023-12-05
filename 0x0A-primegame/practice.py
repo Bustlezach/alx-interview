@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" Module for Prime Game """
+
+
 def prime(n):
     prime_numbers = []
     for i in range(2, n + 1):
@@ -35,6 +39,9 @@ def removal(mul_list, num_list):
 
 
 def isWinner(x, nums, play_times=0):
+    if not nums or x < 1:
+        return None
+
     num = nums[0]
 
     num_list = numbers_list(num)
@@ -54,6 +61,6 @@ def isWinner(x, nums, play_times=0):
         return isWinner(x, nums, play_times)
     else:
         if play_times % 2 == 0:
-            return "Winner: Maria"
+            return "Maria"
         else:
-            return "Winner: Ben"
+            return "Ben"

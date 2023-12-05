@@ -2,65 +2,33 @@
 """ Module for Prime Game """
 
 
-def prime(n):
-    prime_numbers = []
-    for i in range(2, n + 1):
-        if i > 1:
-            for j in range(2, i):
-                if i % j == 0:
-                    break
-            else:
-                prime_numbers.append(i)
-    return prime_numbers
-
-
-def numbers_list(num):
-    numbers = []
-    for i in range(num + 1):
-        numbers.append(i)
-    return numbers
-
-
-def multiple(selected, nums):
-    multiple_list = []
-    for i in range(nums + 1):
-        mul = selected * i
-        if mul <= nums:
-            multiple_list.append(mul)
-    return multiple_list
-
-
-def removal(mul_list, num_list):
-    new_numbers = []
-    for i in num_list:
-        if i not in mul_list:
-            new_numbers.append(i)
-    return new_numbers
-
-
-def isWinner(x, nums, play_times=0):
+def isWinner(x, nums):
+    """Solves Prime Game"""
     if not nums or x < 1:
         return None
+    n = max(nums)
+    flter = [True for _ in range(max(n + 1, 2))]
+    for i in range(2, int(n**0.5) + 1):
+        if not flter[i]:
+            continue
+        for j in range(i*i, n + 1, i):
+            flter[j] = False
 
-    num = nums[0]
+    flter[0] = flter[1] = False
+    c = 0
+    for i in range(len(flter)):
+        if flter[i]:
+            c += 1
+        flter[i] = c
 
-    num_list = numbers_list(num)
-    prime_nums = prime(num)
-    temp = prime_nums[0]
-    mul_list = multiple(temp, num)
-
-    if temp in prime_nums:
-        prime_nums.remove(temp)
-
-    result = removal(mul_list, num_list)
-
-    x = x - 1
-    play_times = play_times + 1
-
-    if len(result) > 1 and x > 0:
-        return isWinner(x, nums, play_times)
+    winner_name = ''
+    first_player = 0
+    for n in nums:
+        first_player += flter[n] % 2 == 1
+    if first_player * 2 == len(nums):
+        winner_name = None
+    if first_player * 2 > len(nums):
+        winner_name = "Maria"
     else:
-        if play_times % 2 == 0:
-            return "Maria"
-        else:
-            return "Ben"
+        winner_name = "Ben"
+    return winner_name
